@@ -1,0 +1,29 @@
+<div class="field">
+  <label for="">{{ label }}</label>
+  <input
+    *ngIf="controlType === 'input'"
+    [type]="inputType"
+    [formControl]="control"
+  />
+
+  <textarea
+    *ngIf="controlType === 'textarea'"
+    [formControl]="control"
+  ></textarea>
+
+  <div *ngIf="showErrors()" class="ui red pointing basic label">
+    <p *ngIf="control.errors.required">Value is required</p>
+    <p *ngIf="control.errors.minlength">
+      Value you entered is
+      {{ control.errors.minlength.actualLength }} characters long, but it must
+      be at least {{ control.errors.minlength.requiredLength }} characters
+    </p>
+    <p *ngIf="control.errors.email">Enter a valid email</p>
+    <p *ngIf="control.errors.maxlength">
+      Value you entered is
+      {{ control.errors.maxlength.actualLength }} characters long, but it must
+      be {{ control.errors.maxlength.requiredLength }} characters at most
+    </p>
+    <!-- <p *ngIf="control.errors.maxlength">Must enter less than 15 characters</p> -->
+  </div>
+</div>
